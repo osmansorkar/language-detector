@@ -158,6 +158,9 @@ class LanguageDetector{
             }
             $total_count++;
         }
+            if($match===0){
+                continue;
+            }
         if(($match/$total_count) >= ($this->percent/100)) {
             // 60% arabic chars, its probably arabic
             $this->language=$language;
