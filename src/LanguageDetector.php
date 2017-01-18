@@ -141,9 +141,11 @@ class LanguageDetector{
         $str = preg_split('//u',$str); <- this function woulrd probably work fine but there was a bug reported in some php version so it pslits by bytes and not chars as well
         */
         preg_match_all('/.|\n/u', $this->str, $matches);
-
-        foreach ($this->languages as $language=>$range){
+        if(empty($matches)){
+            return false;
+        }
         $chars = $matches[0];
+        foreach ($this->languages as $language=>$range){
         $match = 0;
         $latin_count = 0;
         $total_count = 0;
